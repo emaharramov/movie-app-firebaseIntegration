@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="TrendingReusableView" customModule="movie_app" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="288" height="363"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VVJ-Ve-rM6">
+                    <rect key="frame" x="0.0" y="43" width="288" height="289.33333333333331"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eQp-v4-cho">
+                        <size key="itemSize" width="288" height="172"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWN-0r-aNh">
+                    <rect key="frame" x="207" y="8" width="77" height="35.333333333333336"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35.333333333333336" id="pgk-MK-XJ9"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="See All"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itz-Pp-GYU">
+                    <rect key="frame" x="9.0000000000000036" y="8" width="58.333333333333343" height="35.333333333333336"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OJ-TH-1ge">
+                    <rect key="frame" x="9" y="328" width="67" height="34.333333333333314"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2C-LZ-9aP">
+                    <rect key="frame" x="207" y="328" width="77" height="34.333333333333314"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="See All"/>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="itz-Pp-GYU" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="9.0000000000000036" id="04c-DB-biq"/>
+                <constraint firstItem="IWN-0r-aNh" firstAttribute="leading" secondItem="r2C-LZ-9aP" secondAttribute="leading" id="2IX-iC-zfX"/>
+                <constraint firstAttribute="bottom" secondItem="r2C-LZ-9aP" secondAttribute="bottom" constant="0.66666666666668561" id="2qk-fK-izq"/>
+                <constraint firstItem="VVJ-Ve-rM6" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="43" id="4np-7Q-HNI"/>
+                <constraint firstItem="IWN-0r-aNh" firstAttribute="top" secondItem="itz-Pp-GYU" secondAttribute="top" id="8GP-jH-4f6"/>
+                <constraint firstAttribute="bottom" secondItem="VVJ-Ve-rM6" secondAttribute="bottom" constant="30.666666666666742" id="94o-mu-irv"/>
+                <constraint firstAttribute="trailing" secondItem="IWN-0r-aNh" secondAttribute="trailing" constant="4" id="GxW-OA-8jG"/>
+                <constraint firstAttribute="trailing" secondItem="VVJ-Ve-rM6" secondAttribute="trailing" id="JxR-8p-WPH"/>
+                <constraint firstItem="VVJ-Ve-rM6" firstAttribute="leading" secondItem="itz-Pp-GYU" secondAttribute="trailing" constant="-67.333333333333343" id="WsA-Dm-fiL"/>
+                <constraint firstItem="IWN-0r-aNh" firstAttribute="centerY" secondItem="itz-Pp-GYU" secondAttribute="centerY" id="cVN-JF-Ujy"/>
+                <constraint firstItem="itz-Pp-GYU" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="8" id="hUC-L2-Xbf"/>
+                <constraint firstItem="r2C-LZ-9aP" firstAttribute="top" secondItem="3OJ-TH-1ge" secondAttribute="top" id="ljl-AT-wEi"/>
+                <constraint firstItem="3OJ-TH-1ge" firstAttribute="leading" secondItem="itz-Pp-GYU" secondAttribute="leading" id="oIM-7s-OjK"/>
+                <constraint firstItem="r2C-LZ-9aP" firstAttribute="bottom" secondItem="3OJ-TH-1ge" secondAttribute="bottom" id="yAG-Q9-hMv"/>
+            </constraints>
+            <connections>
+                <outlet property="collectionView" destination="VVJ-Ve-rM6" id="kvI-CA-g5T"/>
+            </connections>
+            <point key="canvasLocation" x="172.51908396946564" y="124.29577464788733"/>
+        </collectionReusableView>
+    </objects>
+</document>

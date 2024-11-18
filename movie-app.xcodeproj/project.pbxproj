@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DEF198D32CEB8EC900BD58E3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DEF198D22CEB8EC900BD58E3 /* FirebaseFirestore */; };
+		DEF7EDB62CEA084F007D4903 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DEF7EDB52CEA084F007D4903 /* Kingfisher */; };
+		DEF7EDBE2CEA0C34007D4903 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DEF7EDBD2CEA0C34007D4903 /* Alamofire */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DEF7ECF52CEA0618007D4903 /* movie-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "movie-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +42,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEF7EDB62CEA084F007D4903 /* Kingfisher in Frameworks */,
+				DEF7EDBE2CEA0C34007D4903 /* Alamofire in Frameworks */,
+				DEF198D32CEB8EC900BD58E3 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +87,9 @@
 			);
 			name = "movie-app";
 			packageProductDependencies = (
+				DEF7EDB52CEA084F007D4903 /* Kingfisher */,
+				DEF7EDBD2CEA0C34007D4903 /* Alamofire */,
+				DEF198D22CEB8EC900BD58E3 /* FirebaseFirestore */,
 			);
 			productName = "movie-app";
 			productReference = DEF7ECF52CEA0618007D4903 /* movie-app.app */;
@@ -107,6 +119,11 @@
 			);
 			mainGroup = DEF7ECEC2CEA0618007D4903;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DEF7EDB42CEA084F007D4903 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				DEF7EDBC2CEA0C34007D4903 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DEF198D12CEB8EC900BD58E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DEF7ECF62CEA0618007D4903 /* Products */;
 			projectDirPath = "";
@@ -333,6 +350,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DEF198D12CEB8EC900BD58E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
+		DEF7EDB42CEA084F007D4903 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
+			};
+		};
+		DEF7EDBC2CEA0C34007D4903 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DEF198D22CEB8EC900BD58E3 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEF198D12CEB8EC900BD58E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		DEF7EDB52CEA084F007D4903 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEF7EDB42CEA084F007D4903 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		DEF7EDBD2CEA0C34007D4903 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DEF7EDBC2CEA0C34007D4903 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DEF7ECED2CEA0618007D4903 /* Project object */;
 }
