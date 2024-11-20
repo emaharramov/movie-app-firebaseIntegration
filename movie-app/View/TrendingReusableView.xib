@@ -28,6 +28,9 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="See All"/>
+                    <connections>
+                        <action selector="popularSeeAll:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="9An-Si-Qch"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itz-Pp-GYU">
                     <rect key="frame" x="9.0000000000000036" y="8" width="58.333333333333343" height="35.333333333333336"/>
@@ -45,6 +48,9 @@
                     <rect key="frame" x="207" y="328" width="77" height="34.333333333333314"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="See All"/>
+                    <connections>
+                        <action selector="trendingSeelAll:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="RFr-ql-BtA"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>

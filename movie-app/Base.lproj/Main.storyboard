@@ -189,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mX-mP-pVN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4370.2290076335876" y="679.57746478873241"/>
+            <point key="canvasLocation" x="7629.7709923664115" y="755.63380281690149"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Nqo-9j-TLn">
@@ -257,6 +257,38 @@
             </objects>
             <point key="canvasLocation" x="2249.6183206106871" y="755.63380281690149"/>
         </scene>
+        <!--All Movie-->
+        <scene sceneID="pCU-AG-1pD">
+            <objects>
+                <tableViewController storyboardIdentifier="AllMovieViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3eN-6S-nF4" customClass="AllMovieViewController" customModule="movie_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="jOe-hD-8DM">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AllMovieTableCell" id="eLk-3x-x81" customClass="AllMovieTableCell" customModule="movie_app" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eLk-3x-x81" id="CTy-cH-8k3">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3eN-6S-nF4" id="kJS-rf-XjI"/>
+                            <outlet property="delegate" destination="3eN-6S-nF4" id="STf-yn-UML"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="All Movie" id="u3i-7I-ouB"/>
+                    <connections>
+                        <outlet property="allMovieTable" destination="jOe-hD-8DM" id="xn0-BF-L4H"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gL5-Bt-6T4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4924.4274809160306" y="784.50704225352115"/>
+        </scene>
         <!--Item-->
         <scene sceneID="q2b-s0-31r">
             <objects>
@@ -294,6 +326,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vqh-g9-XLj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1322.9007633587785" y="755.63380281690149"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NmD-xC-LPK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="04G-9I-e2C" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cQE-fP-GNO">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3eN-6S-nF4" kind="relationship" relationship="rootViewController" id="FTI-i3-JSg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Rj-q0-7M8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3997.709923664122" y="784.50704225352115"/>
         </scene>
     </scenes>
     <resources>

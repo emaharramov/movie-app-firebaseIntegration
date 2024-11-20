@@ -5,11 +5,9 @@
 //  Created by Emil Maharramov on 15.11.24.
 //
 
-
 import UIKit
-import Kingfisher
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, TrendingReusableViewDelegate {
     
     private let viewModel = HomeVM()
     
@@ -61,25 +59,39 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         if let controller = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController {
             controller.movie = selectedMovie
-            navigationController?.show(controller, sender: nil)
+            navigationController?.pushViewController(controller, animated: true)
         }
-}
-
+    }
     
+    func popularSeeAll(in view: TrendingReusableView) {
+         
+         let popularMovies = viewModel.popularMovie
+         
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "AllMovieViewController") as? AllMovieViewController {
+             controller.popularMovies = popularMovies
+             
+             navigationController?.pushViewController(controller, animated: true)
+         }
+    }
+    
+    func trendingSeelAll(in view: TrendingReusableView) {
+         
+        let trendingMovies = viewModel.trendingMovie
+         
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "AllMovieViewController") as? AllMovieViewController {
+            controller.trendingMovies = trendingMovies
+             
+             navigationController?.pushViewController(controller, animated: true)
+         }
+    }
+        
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TrendingReusableView", for: indexPath) as! TrendingReusableView
-            
+            header.delegate = self  
             header.configure(with: viewModel.popularMovie)
             return header
         }
         return UICollectionReusableView()
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 5, bottom: 5, right: 5)
-    }
-    
-    
-    
 }

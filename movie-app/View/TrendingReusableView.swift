@@ -8,22 +8,25 @@
 import UIKit
 import Kingfisher
 
+protocol TrendingReusableViewDelegate: AnyObject {
+    func popularSeeAll(in view: TrendingReusableView)
+    func trendingSeelAll(in view: TrendingReusableView)
+}
+
 class TrendingReusableView: UICollectionReusableView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    @IBOutlet weak var filmTitleLabel: UILabel!
-    @IBOutlet weak var imageViewField: UIImageView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var filmTitleLabel: UILabel!
+    @IBOutlet private weak var imageViewField: UIImageView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     var movies: [Movie] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // CollectionView için delegate ve dataSource ayarları
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        // CollectionView hücresini kaydediyoruz
         let nib = UINib(nibName: "MovieCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "MovieCollectionViewCell")
     }
@@ -33,8 +36,6 @@ class TrendingReusableView: UICollectionReusableView, UICollectionViewDelegate, 
         collectionView.reloadData()
     }
 
-    // MARK: - UICollectionViewDataSource
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
@@ -42,13 +43,29 @@ class TrendingReusableView: UICollectionReusableView, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
         let movie = movies[indexPath.row]
-        cell.configure(with: movie) // Hücre yapılandırması
+        cell.configure(with: movie)
         return cell
     }
-
-    // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 170, height: collectionView.frame.height)
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 10, left: 5, bottom: 5, right: 5)
+    }
+    
+    weak var delegate: TrendingReusableViewDelegate?
+    
+     @IBAction func popularSeeAll(_ sender: Any) {
+         print("Popular See All clicked")
+         delegate?.popularSeeAll(in: self)
+     }
+     
+     @IBAction func trendingSeelAll(_ sender: Any) {
+         print("Trending See All clicked")
+         delegate?.trendingSeelAll(in: self)
+     }
+   
 }

@@ -56,6 +56,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
+    
     func setupUI() {
         self.title = movie?.title ?? "No Title Available"
 

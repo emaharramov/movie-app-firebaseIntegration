@@ -13,9 +13,9 @@ protocol FavsTableViewCellDelegate: AnyObject {
 
 class FavsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     
     weak var delegate: FavsTableViewCellDelegate?
     private var movieId: String?

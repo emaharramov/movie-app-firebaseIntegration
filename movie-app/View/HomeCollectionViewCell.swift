@@ -14,7 +14,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var fileNameLabel: UILabel!
     @IBOutlet private weak var imageViewField: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     
     @IBOutlet weak var ratingLabel: UILabel!
     

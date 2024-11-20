@@ -10,8 +10,8 @@ import Kingfisher
 
 class MovieCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var movieImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var movieImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
 
     @IBOutlet weak var ratingField: UILabel!
     func configure(with movie: Movie) {

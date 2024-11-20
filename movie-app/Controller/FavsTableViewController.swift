@@ -16,7 +16,6 @@ class FavsTableViewController: UITableViewController, FavsTableViewCellDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Custom Cell Kaydı
         let nib = UINib(nibName: "FavsTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "FavsTableViewCell")
         
@@ -63,17 +62,30 @@ class FavsTableViewController: UITableViewController, FavsTableViewCellDelegate 
     
             return cell
         }
-    
+  
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let favorite = favorites[indexPath.row]
         
-        let selected = favorites[indexPath.row].id
-        print(selected)
-//        if let controller = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController {
-//            
-//            controller.movie = favorites[indexPath.row].id
-//            navigationController?.pushViewController(controller, animated: true)
-//        }
+        let movie = Movie(
+            id: Int(favorite.data["id"] as? String ?? "0"),
+            title: favorite.data["title"] as? String,
+            originalTitle: nil,
+            overview: favorite.data["description"] as? String,
+            posterPath: favorite.data["posterPath"] as? String,
+            backdropPath: nil,
+            releaseDate: favorite.data["releaseDate"] as? String,
+            voteAverage: favorite.data["voteAverage"] as? Double,
+            voteCount: nil,
+            popularity: favorite.data["popularity"] as? Double
+        )
+        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController {
+            controller.movie = movie
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
+
+
 
         func removeFavorite(for movieId: String) {
             db.collection("favorites").document(movieId).delete { error in

@@ -43,8 +43,7 @@ class NetworkManager {
     func request<T: Codable>(model: T.Type,
                              url: String,
                              method: HTTPMethod = .get,
-//                             paramerters: Parameters? = nil,
-                             completion: @escaping (T?, String?) -> Void) { //completion - data, error
+                             completion: @escaping (T?, String?) -> Void) { 
         AF.request(url, method: method).responseDecodable(of: T.self) { response in
             switch response.result {
             case .success(let data):
