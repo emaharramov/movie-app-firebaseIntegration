@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -56,7 +57,7 @@
                         <barButtonItem key="rightBarButtonItem" image="magnifyingglass" catalog="system" id="PeK-Uf-7R5">
                             <color key="tintColor" red="0.026459614480000001" green="0.01389343965" blue="0.050217461339999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <action selector="searchFilm:" destination="BYZ-38-t0r" id="5zO-YL-uAB"/>
+                                <action selector="search:" destination="BYZ-38-t0r" id="nJM-36-Ufy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -67,6 +68,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2632.8244274809158" y="-54.225352112676056"/>
+        </scene>
+        <!--Search Movie-->
+        <scene sceneID="mez-Kq-tUs">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j3h-P6-2uo" customClass="SearchViewController" customModule="movie_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fpr-9x-dtg">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uFM-Hq-zRf">
+                                <rect key="frame" x="0.0" y="183" width="393" height="669"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchCell" id="8Lf-60-ice">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Lf-60-ice" id="3dD-7V-FDv">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HS3-KR-hsl">
+                                <rect key="frame" x="16" y="123" width="361" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="gkd-og-B5d"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uFM-Hq-zRf" firstAttribute="trailing" secondItem="gkd-og-B5d" secondAttribute="trailing" id="9Wy-xB-G5z"/>
+                            <constraint firstItem="uFM-Hq-zRf" firstAttribute="leading" secondItem="gkd-og-B5d" secondAttribute="leading" id="K2H-ca-ROu"/>
+                            <constraint firstItem="uFM-Hq-zRf" firstAttribute="top" secondItem="HS3-KR-hsl" secondAttribute="bottom" constant="4" id="MbX-sQ-NO2"/>
+                            <constraint firstItem="HS3-KR-hsl" firstAttribute="top" secondItem="gkd-og-B5d" secondAttribute="top" constant="20" id="RB5-co-Zd1"/>
+                            <constraint firstAttribute="bottom" secondItem="uFM-Hq-zRf" secondAttribute="bottom" id="Tz3-35-hIe"/>
+                            <constraint firstItem="HS3-KR-hsl" firstAttribute="leading" secondItem="gkd-og-B5d" secondAttribute="leading" constant="16" id="Uav-EV-KW3"/>
+                            <constraint firstItem="uFM-Hq-zRf" firstAttribute="centerX" secondItem="HS3-KR-hsl" secondAttribute="centerX" id="cq3-yl-h0v"/>
+                            <constraint firstItem="uFM-Hq-zRf" firstAttribute="top" secondItem="HS3-KR-hsl" secondAttribute="bottom" constant="4" id="hrQ-D3-IWk"/>
+                            <constraint firstItem="gkd-og-B5d" firstAttribute="trailing" secondItem="HS3-KR-hsl" secondAttribute="trailing" constant="16" id="pc9-WP-YeE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search Movie" style="editor" id="zqF-WI-1Et"/>
+                    <connections>
+                        <outlet property="searchFilm" destination="HS3-KR-hsl" id="thZ-Yd-e7a"/>
+                        <outlet property="searchTableView" destination="uFM-Hq-zRf" id="6uL-az-Vbr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tyQ-o7-195" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4379.3893129770995" y="-54.225352112676056"/>
         </scene>
         <!--Movie Detail View Controller-->
         <scene sceneID="Cik-vM-48V">
@@ -169,16 +221,18 @@
                             <constraint firstItem="uf3-7X-E6h" firstAttribute="trailing" secondItem="i19-Tj-L6H" secondAttribute="trailing" id="oDG-nk-0Mh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Htk-go-Hak">
-                        <barButtonItem key="rightBarButtonItem" title="Add Favorites" id="qih-o5-b2I">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <navigationItem key="navigationItem" style="editor" id="Htk-go-Hak">
+                        <barButtonItem key="rightBarButtonItem" springLoaded="YES" id="qih-o5-b2I">
+                            <imageReference key="image" image="heart" catalog="system" symbolScale="medium" variableValue="0.0"/>
+                            <color key="tintColor" red="1" green="0.0" blue="0.01224201724" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <action selector="addFav:" destination="i2p-Lc-91G" id="Z0f-Qg-5ua"/>
+                                <action selector="addFav:" destination="i2p-Lc-91G" id="mOI-Vs-3kK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="descriptionLabel" destination="Hwh-Zc-les" id="5mh-t9-c6g"/>
+                        <outlet property="favBarButtonItem" destination="qih-o5-b2I" id="Xzm-Wf-O2b"/>
                         <outlet property="imageView" destination="92E-QP-RDR" id="i3q-Tm-9d1"/>
                         <outlet property="mainView" destination="7NM-uT-fSA" id="ltL-Vv-PeS"/>
                         <outlet property="popularityLabel" destination="qu5-dV-YSX" id="h3L-nl-6F5"/>
@@ -189,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9mX-mP-pVN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7629.7709923664115" y="755.63380281690149"/>
+            <point key="canvasLocation" x="5898.4732824427474" y="-54.225352112676056"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Nqo-9j-TLn">
@@ -221,7 +275,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="3Kg-Uq-fju"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" destinationCreationSelector="searchView" id="3Kg-Uq-fju"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PNz-RG-fvI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -255,9 +309,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BPc-Hv-rEW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2249.6183206106871" y="755.63380281690149"/>
+            <point key="canvasLocation" x="1576" y="692"/>
         </scene>
-        <!--All Movie-->
+        <!--All Movie View Controller-->
         <scene sceneID="pCU-AG-1pD">
             <objects>
                 <tableViewController storyboardIdentifier="AllMovieViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3eN-6S-nF4" customClass="AllMovieViewController" customModule="movie_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -280,14 +334,14 @@
                             <outlet property="delegate" destination="3eN-6S-nF4" id="STf-yn-UML"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="All Movie" id="u3i-7I-ouB"/>
+                    <navigationItem key="navigationItem" style="editor" id="u3i-7I-ouB"/>
                     <connections>
                         <outlet property="allMovieTable" destination="jOe-hD-8DM" id="xn0-BF-L4H"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gL5-Bt-6T4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4924.4274809160306" y="784.50704225352115"/>
+            <point key="canvasLocation" x="3389" y="692"/>
         </scene>
         <!--Item-->
         <scene sceneID="q2b-s0-31r">
@@ -306,7 +360,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pAE-bB-NzJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3444" y="-54"/>
+            <point key="canvasLocation" x="5089.3129770992364" y="-54.225352112676056"/>
         </scene>
         <!--Favorites-->
         <scene sceneID="JaN-cB-qGC">
@@ -325,7 +379,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vqh-g9-XLj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1322.9007633587785" y="755.63380281690149"/>
+            <point key="canvasLocation" x="821" y="692"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NmD-xC-LPK">
@@ -343,10 +397,29 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Rj-q0-7M8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3997.709923664122" y="784.50704225352115"/>
+            <point key="canvasLocation" x="2633" y="692"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bSH-M6-uap">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cyJ-5w-H6D" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7eI-9I-t7s">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="j3h-P6-2uo" kind="relationship" relationship="rootViewController" id="ffo-ke-yiP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yg4-uY-7Q8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3452.6717557251909" y="-54.225352112676056"/>
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="movieclapper" catalog="system" width="128" height="113"/>

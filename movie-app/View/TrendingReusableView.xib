@@ -13,7 +13,7 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VVJ-Ve-rM6">
-                    <rect key="frame" x="0.0" y="43" width="288" height="289.33333333333331"/>
+                    <rect key="frame" x="11" y="43" width="277" height="289.33333333333331"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eQp-v4-cho">
                         <size key="itemSize" width="288" height="172"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -22,32 +22,36 @@
                     </collectionViewFlowLayout>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IWN-0r-aNh">
-                    <rect key="frame" x="207" y="8" width="77" height="35.333333333333336"/>
+                    <rect key="frame" x="203.66666666666666" y="8" width="80.333333333333343" height="35.333333333333336"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35.333333333333336" id="pgk-MK-XJ9"/>
                     </constraints>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="See All"/>
+                    <buttonConfiguration key="configuration" style="plain" title="See All">
+                        <fontDescription key="titleFontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="17"/>
+                    </buttonConfiguration>
                     <connections>
                         <action selector="popularSeeAll:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="9An-Si-Qch"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itz-Pp-GYU">
-                    <rect key="frame" x="9.0000000000000036" y="8" width="58.333333333333343" height="35.333333333333336"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="9" y="8" width="69.333333333333329" height="35.333333333333336"/>
+                    <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="19"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3OJ-TH-1ge">
-                    <rect key="frame" x="9" y="328" width="67" height="34.333333333333314"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="9" y="331.33333333333331" width="81.333333333333329" height="31"/>
+                    <fontDescription key="fontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="19"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2C-LZ-9aP">
-                    <rect key="frame" x="207" y="328" width="77" height="34.333333333333314"/>
+                    <rect key="frame" x="203.66666666666666" y="331.33333333333331" width="80.333333333333343" height="31"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="See All"/>
+                    <buttonConfiguration key="configuration" style="plain" title="See All">
+                        <fontDescription key="titleFontDescription" name="HiraMinProN-W3" family="Hiragino Mincho ProN" pointSize="17"/>
+                    </buttonConfiguration>
                     <connections>
                         <action selector="trendingSeelAll:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="RFr-ql-BtA"/>
                     </connections>

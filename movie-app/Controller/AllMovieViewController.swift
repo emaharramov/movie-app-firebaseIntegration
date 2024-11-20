@@ -17,7 +17,7 @@ class AllMovieViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        self.title = (popularMovies.count == 0) ? "All Trending Movies" : "All Popular Movies"
         let nib = UINib(nibName: "AllMovieTableCell", bundle: nil)
         allMovieTable.register(nib, forCellReuseIdentifier: "AllMovieTableCell")
 
@@ -43,7 +43,7 @@ class AllMovieViewController: UITableViewController {
             controller.movie = selectedMovie
             
             if let navigationController = navigationController {
-                navigationController.pushViewController(controller, animated: true)
+                navigationController.pushViewController(controller, animated: true) 
             } else {
                 print("NavigationController is nil")
             }

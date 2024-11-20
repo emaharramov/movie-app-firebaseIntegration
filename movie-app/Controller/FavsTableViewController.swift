@@ -12,6 +12,7 @@ class FavsTableViewController: UITableViewController, FavsTableViewCellDelegate 
 
     var favorites: [(id: String, data: [String: Any])] = []
     private let db = Firestore.firestore()
+    var moviedetail = MovieDetailViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class FavsTableViewController: UITableViewController, FavsTableViewCellDelegate 
     func fetchFavorites() {
         db.collection("favorites").getDocuments { snapshot, error in
             if let error = error {
-                return
+                return print(error)
             }
 
             guard let documents = snapshot?.documents else {
@@ -85,12 +86,13 @@ class FavsTableViewController: UITableViewController, FavsTableViewCellDelegate 
         }
     }
 
-
-
         func removeFavorite(for movieId: String) {
+            
+            moviedetail.updateFavoriteIcon(isFavorite: false)
+            
             db.collection("favorites").document(movieId).delete { error in
                 if let error = error {
-                    return
+                    return print(error)
                 }
     
                 self.favorites.removeAll { $0.id == movieId }

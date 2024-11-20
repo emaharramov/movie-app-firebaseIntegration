@@ -84,7 +84,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
              navigationController?.pushViewController(controller, animated: true)
          }
     }
-        
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TrendingReusableView", for: indexPath) as! TrendingReusableView
@@ -93,5 +93,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             return header
         }
         return UICollectionReusableView()
+    }
+    
+    func seeAll() {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController {
+            controller.allMovies = viewModel.popularMovie + viewModel.trendingMovie
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
+    @IBAction func search(_ sender: Any) {
+        seeAll()
     }
 }
