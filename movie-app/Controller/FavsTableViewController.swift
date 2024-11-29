@@ -6,69 +6,72 @@
 //
 
 import UIKit
-import FirebaseFirestore
 
 class FavsTableViewController: UITableViewController, FavsTableViewCellDelegate {
 
-    var favorites: [(id: String, data: [String: Any])] = []
-    private let db = Firestore.firestore()
-    var moviedetail = MovieDetailViewController()
+    private var favorites: [(id: String, data: [String: Any])] = []
+    private let firestoreService = FirestoreService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: "FavsTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "FavsTableViewCell")
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshFavorites), name: Notification.Name("FavoritesUpdated"), object: nil)
-
-        
+        setupTableView()
+        setupObservers()
         fetchFavorites()
     }
 
     deinit {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("FavoritesUpdated"), object: nil)
+        NotificationCenter.default.removeObserver(self)
     }
 
-    @objc func refreshFavorites() {
+    // MARK: - Setup Methods
+    private func setupTableView() {
+        let nib = UINib(nibName: "FavsTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "FavsTableViewCell")
+    }
+    
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshFavorites), name: Notification.Name("FavoritesUpdated"), object: nil)
+    }
+
+    @objc private func refreshFavorites() {
         fetchFavorites()
     }
 
-    func fetchFavorites() {
-        db.collection("favorites").getDocuments { snapshot, error in
-            if let error = error {
-                return print(error)
-            }
-
-            guard let documents = snapshot?.documents else {
-                return
-            }
-
-            self.favorites = documents.map { (id: $0.documentID, data: $0.data()) }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+    // MARK: - Fetch Data
+    private func fetchFavorites() {
+        firestoreService.fetchFavorites { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let fetchedFavorites):
+                self.favorites = fetchedFavorites
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print("Error fetching favorites: \(error)")
             }
         }
     }
-    
+
+    // MARK: - Table View Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return favorites.count
-        }
-    
-        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "FavsTableViewCell", for: indexPath) as! FavsTableViewCell
-            let movie = favorites[indexPath.row]
-            cell.configure(with: movie.data, id: movie.id)
-            cell.delegate = self
-    
-            return cell
-        }
-  
+        return favorites.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FavsTableViewCell", for: indexPath) as! FavsTableViewCell
+        let favorite = favorites[indexPath.row]
+        cell.configure(with: favorite.data, id: favorite.id)
+        cell.delegate = self
+        return cell
+    }
+
+    // MARK: - Table View Delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let favorite = favorites[indexPath.row]
-        
         let movie = Movie(
-            id: Int(favorite.data["id"] as? String ?? "0"),
+            id: Int(favorite.data["movieId"] as? String ?? "0"),
             title: favorite.data["title"] as? String,
             originalTitle: nil,
             overview: favorite.data["description"] as? String,
@@ -86,19 +89,19 @@ class FavsTableViewController: UITableViewController, FavsTableViewCellDelegate 
         }
     }
 
-        func removeFavorite(for movieId: String) {
-            
-            moviedetail.updateFavoriteIcon(isFavorite: false)
-            
-            db.collection("favorites").document(movieId).delete { error in
-                if let error = error {
-                    return print(error)
-                }
-    
+    // MARK: - FavsTableViewCellDelegate
+    func removeFavorite(for movieId: String) {
+        firestoreService.removeMovieFromFavorites(documentId: movieId) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
                 self.favorites.removeAll { $0.id == movieId }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
+            case .failure(let error):
+                print("Error removing favorite: \(error)")
             }
         }
+    }
 }

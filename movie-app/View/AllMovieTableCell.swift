@@ -16,14 +16,6 @@ class AllMovieTableCell: UITableViewCell {
     func configure(with model: Movie) {
         movieName.text = model.title
         descriptionField.text = model.overview
-        if let posterPath = model.posterPath, !posterPath.isEmpty {
-            let baseURL = "https://image.tmdb.org/t/p/w500"
-            let fullPath = baseURL + posterPath
-            let url = URL(string: fullPath)
-            imageField.kf.setImage(with: url)
-        } else {
-            imageField.image = UIImage(named: "default_poster")
-        }
+        imageField.setImage(from: model.posterPath)
     }
-
 }

@@ -20,27 +20,15 @@ class FavsTableViewCell: UITableViewCell {
     weak var delegate: FavsTableViewCellDelegate?
     private var movieId: String?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     func configure(with movie: [String: Any], id: String) {
         self.movieId = id
         titleLabel.text = movie["title"] as? String ?? "No Title"
         descriptionLabel.text = movie["description"] as? String ?? "No description available"
-        
-        if let posterPath = movie["posterPath"] as? String,
-           let imageUrl = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") {
-            posterImageView.kf.setImage(with: imageUrl)
-        } else {
-            posterImageView.image = UIImage(named: "default_poster")
-        }
+        posterImageView.setImage(from: movie["posterPath"] as? String)
     }
     
     @IBAction func removeFavoriteButtonTapped(_ sender: Any) {
-        guard let movieId = movieId else {
-            return
-        }
+        guard let movieId = movieId else { return }
         delegate?.removeFavorite(for: movieId)
     }
 }
