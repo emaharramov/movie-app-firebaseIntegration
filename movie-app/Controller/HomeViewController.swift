@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, TrendingReusableViewDelegate {
+class HomeViewController: UIViewController {
     
     private let viewModel = HomeVM()
     
@@ -42,6 +42,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
+    func seeAll() {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController {
+            controller.allMovies = viewModel.popularMovie + viewModel.trendingMovie
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+    
+    @IBAction func search(_ sender: Any) {
+        seeAll()
+    }
+}
+//MARK: CollectionView config
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.trendingMovie.count
     }
@@ -62,47 +76,62 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             navigationController?.pushViewController(controller, animated: true)
         }
     }
-    
-    func popularSeeAll(in view: TrendingReusableView) {
-         
-         let popularMovies = viewModel.popularMovie
-         
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "AllMovieViewController") as? AllMovieViewController {
-             controller.popularMovies = popularMovies
-             
-             navigationController?.pushViewController(controller, animated: true)
-         }
-    }
-    
-    func trendingSeelAll(in view: TrendingReusableView) {
-         
-        let trendingMovies = viewModel.trendingMovie
-         
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "AllMovieViewController") as? AllMovieViewController {
-            controller.trendingMovies = trendingMovies
-             
-             navigationController?.pushViewController(controller, animated: true)
-         }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TrendingReusableView", for: indexPath) as! TrendingReusableView
-            header.delegate = self  
+            header.delegate = self
             header.configure(with: viewModel.popularMovie)
             return header
         }
         return UICollectionReusableView()
     }
     
-    func seeAll() {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "SearchViewController") as? SearchViewController {
-            controller.allMovies = viewModel.popularMovie + viewModel.trendingMovie
-            navigationController?.pushViewController(controller, animated: true)
-        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        .init(width: 350, height: 200)
     }
     
-    @IBAction func search(_ sender: Any) {
-        seeAll()
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        .init(width: collectionView.frame.width, height: 350)
     }
+}
+//MARK: TrendingReusable config
+extension HomeViewController: TrendingReusableViewDelegate {
+    
+    func popularSeeAll(in view: TrendingReusableView) {
+         let popularMovies = viewModel.popularMovie
+         
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "AllMovieViewController") as? AllMovieViewController {
+             controller.popularMovies = popularMovies
+             navigationController?.pushViewController(controller, animated: true)
+         }
+    }
+    
+    func trendingSeelAll(in view: TrendingReusableView) {
+        let trendingMovies = viewModel.trendingMovie
+         
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "AllMovieViewController") as? AllMovieViewController {
+            controller.trendingMovies = trendingMovies
+             navigationController?.pushViewController(controller, animated: true)
+         }
+    }
+    
+    func seeAllAction(type: TrendingViewActionType) {
+        switch type {
+        case .popular:
+            let popularMovies = viewModel.popularMovie
+            
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "AllMovieViewController") as? AllMovieViewController {
+                controller.popularMovies = popularMovies
+                navigationController?.pushViewController(controller, animated: true)
+            }
+        case .trending:
+            let trendingMovies = viewModel.trendingMovie
+            
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "AllMovieViewController") as? AllMovieViewController {
+                controller.trendingMovies = trendingMovies
+                navigationController?.pushViewController(controller, animated: true)
+            }
+        }
+    }
+  
 }

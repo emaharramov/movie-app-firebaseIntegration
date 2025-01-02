@@ -8,9 +8,16 @@
 import UIKit
 import Kingfisher
 
+enum TrendingViewActionType {
+    case popular
+    case trending
+}
+
 protocol TrendingReusableViewDelegate: AnyObject {
     func popularSeeAll(in view: TrendingReusableView)
     func trendingSeelAll(in view: TrendingReusableView)
+    
+    func seeAllAction(type: TrendingViewActionType)
 }
 
 class TrendingReusableView: UICollectionReusableView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -59,13 +66,11 @@ class TrendingReusableView: UICollectionReusableView, UICollectionViewDelegate, 
     weak var delegate: TrendingReusableViewDelegate?
     
      @IBAction func popularSeeAll(_ sender: Any) {
-         print("Popular See All clicked")
-         delegate?.popularSeeAll(in: self)
+         delegate?.seeAllAction(type: .popular)
      }
      
-     @IBAction func trendingSeelAll(_ sender: Any) {
-         print("Trending See All clicked")
-         delegate?.trendingSeelAll(in: self)
-     }
+    @IBAction func trendingSeelAll(_ sender: Any) {
+        delegate?.seeAllAction(type: .trending)
+    }
    
 }
