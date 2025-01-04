@@ -23,6 +23,7 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         setupCollectionView()
         checkIfMovieIsFavorite()
+        title = movie?.title
     }
     
     func setupCollectionView() {
