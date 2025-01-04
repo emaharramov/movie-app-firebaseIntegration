@@ -42,16 +42,18 @@ class FirestoreService {
             if let error = error {
                 completion(.failure(error))
             } else {
+                NotificationCenter.default.post(name: Notification.Name("FavoritesUpdated"), object: nil)
                 completion(.success(()))
             }
         }
     }
-    
+
     func removeMovieFromFavorites(documentId: String, completion: @escaping (Result<Void, Error>) -> Void) {
         firestore.collection("favorites").document(documentId).delete { error in
             if let error = error {
                 completion(.failure(error))
             } else {
+                NotificationCenter.default.post(name: Notification.Name("FavoritesUpdated"), object: nil)
                 completion(.success(()))
             }
         }

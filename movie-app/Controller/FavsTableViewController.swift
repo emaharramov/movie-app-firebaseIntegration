@@ -11,6 +11,15 @@ class FavsTableViewController: UITableViewController, FavsTableViewCellDelegate 
 
     private var favorites: [(id: String, data: [String: Any])] = []
     private let firestoreService = FirestoreService()
+    
+    
+    private func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshFavorites), name: Notification.Name("FavoritesUpdated"), object: nil)
+    }
+
+    @objc private func refreshFavorites() {
+        fetchFavorites()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,14 +37,6 @@ class FavsTableViewController: UITableViewController, FavsTableViewCellDelegate 
     private func setupTableView() {
         let nib = UINib(nibName: "FavsTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "FavsTableViewCell")
-    }
-    
-    private func setupObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshFavorites), name: Notification.Name("FavoritesUpdated"), object: nil)
-    }
-
-    @objc private func refreshFavorites() {
-        fetchFavorites()
     }
 
     // MARK: - Fetch Data
