@@ -57,7 +57,7 @@ extension ActorAndSimilarViewController: UICollectionViewDelegate, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width / 2
+        let width = collectionView.bounds.width / 2 - 15
         return CGSize(width: width, height: 170)
     }
     
