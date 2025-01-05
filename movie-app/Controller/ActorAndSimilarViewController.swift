@@ -1,5 +1,5 @@
 //
-//  ActSimViewController.swift
+//  ActorAndSimilarViewController.swift
 //  movie-app
 //
 //  Created by Emil Maharramov on 02.01.25.
@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ActSimViewController: UIViewController {
+class ActorAndSimilarViewController: UIViewController {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     private let viewModel = HomeVM()
     
@@ -42,7 +43,7 @@ class ActSimViewController: UIViewController {
     }
 }
 
-extension ActSimViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ActorAndSimilarViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.popularPerson.count
     }
