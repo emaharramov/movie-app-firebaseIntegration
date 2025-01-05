@@ -17,15 +17,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionView()
-        searchFilm.delegate = self
         
-        filteredMovies = allMovies
+        configureUI()
     }
     
-    func setupCollectionView() {
+    fileprivate func configureUI() {
+        searchFilm.delegate = self
         searchTableView.delegate = self
         searchTableView.dataSource = self
+        filteredMovies = allMovies
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

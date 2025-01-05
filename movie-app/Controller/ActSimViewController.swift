@@ -8,35 +8,38 @@
 import UIKit
 
 class ActSimViewController: UIViewController {
-    
-    private let viewModel = HomeVM()
     @IBOutlet weak var collectionView: UICollectionView!
+    private let viewModel = HomeVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupCollectionView()
         configureViewModel()
     }
     
-    func configureViewModel() {
+    fileprivate func configureViewModel() {
+
+        showLoading()
+        
         viewModel.loadMovie()
         
-        viewModel.success = {
-            self.collectionView.reloadData()
+        viewModel.success = { [weak self] in
+            self?.hideLoading()
+            self?.collectionView.reloadData()
         }
         
-        viewModel.didUpdateMovie = {
-            self.collectionView.reloadData()
+        viewModel.error = { [weak self] error in
+            self?.showAlert(title: "Error", message: "Error Message: \(error)", isError: true)
+            self?.hideLoading()
         }
     }
 
-    private func setupCollectionView() {
+    fileprivate func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UINib(nibName: "ActSimCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ActSimCollectionViewCell")
+        collectionView.register(UINib(nibName: "TopImageBottomLabelCell", bundle: nil), forCellWithReuseIdentifier: "TopImageBottomLabelCell")
     }
-
-   
 }
 
 extension ActSimViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -46,9 +49,9 @@ extension ActSimViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ActSimCollectionViewCell", for: indexPath) as! ActSimCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopImageBottomLabelCell", for: indexPath) as! TopImageBottomLabelCell
         let actor = viewModel.popularPerson[indexPath.row]
-        cell.configure(with: actor)
+        cell.configure(data: actor)
         return cell
     }
 
@@ -60,7 +63,6 @@ extension ActSimViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             let selectedActor = viewModel.popularPerson[indexPath.row]
             
-            // ActorsFilmViewController'a geçiş
             if let actorsFilmVC = storyboard?.instantiateViewController(withIdentifier: "ActorsFilmViewController") as? ActorsFilmViewController {
                 actorsFilmVC.actor = selectedActor 
                 navigationController?.pushViewController(actorsFilmVC, animated: true)

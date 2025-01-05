@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE5441C72D2AE52400EB949E /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = DE5441C62D2AE52400EB949E /* ProgressHUD */; };
 		DEF198D32CEB8EC900BD58E3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DEF198D22CEB8EC900BD58E3 /* FirebaseFirestore */; };
 		DEF7EDB62CEA084F007D4903 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = DEF7EDB52CEA084F007D4903 /* Kingfisher */; };
 		DEF7EDBE2CEA0C34007D4903 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DEF7EDBD2CEA0C34007D4903 /* Alamofire */; };
@@ -43,6 +44,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEF7EDB62CEA084F007D4903 /* Kingfisher in Frameworks */,
+				DE5441C72D2AE52400EB949E /* ProgressHUD in Frameworks */,
 				DEF7EDBE2CEA0C34007D4903 /* Alamofire in Frameworks */,
 				DEF198D32CEB8EC900BD58E3 /* FirebaseFirestore in Frameworks */,
 			);
@@ -90,6 +92,7 @@
 				DEF7EDB52CEA084F007D4903 /* Kingfisher */,
 				DEF7EDBD2CEA0C34007D4903 /* Alamofire */,
 				DEF198D22CEB8EC900BD58E3 /* FirebaseFirestore */,
+				DE5441C62D2AE52400EB949E /* ProgressHUD */,
 			);
 			productName = "movie-app";
 			productReference = DEF7ECF52CEA0618007D4903 /* movie-app.app */;
@@ -123,6 +126,7 @@
 				DEF7EDB42CEA084F007D4903 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				DEF7EDBC2CEA0C34007D4903 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				DEF198D12CEB8EC900BD58E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DE5441C52D2AE52400EB949E /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DEF7ECF62CEA0618007D4903 /* Products */;
@@ -352,6 +356,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DE5441C52D2AE52400EB949E /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.3;
+			};
+		};
 		DEF198D12CEB8EC900BD58E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -379,6 +391,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DE5441C62D2AE52400EB949E /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE5441C52D2AE52400EB949E /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
+		};
 		DEF198D22CEB8EC900BD58E3 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DEF198D12CEB8EC900BD58E3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

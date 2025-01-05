@@ -19,11 +19,23 @@ struct ActorResponse: Codable {
     }
 }
 
-struct Actor: Codable {
+struct Actor: Codable, TopImageBottomLabelCellProtocol {
     let id: Int?
     let name: String?
     let profilePath: String?
     var films: [Film]?
+    
+    var imageName: String {
+        if let profilePath = profilePath {
+            return profilePath
+        } else {
+            return "placeholder"
+        }
+    }
+    
+    var nameText: String {
+        name ?? ""
+    }
 
     enum CodingKeys: String, CodingKey {
         case id

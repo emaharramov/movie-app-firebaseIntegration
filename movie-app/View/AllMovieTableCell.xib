@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f9Q-HX-TVA">
-                        <rect key="frame" x="8" y="8" width="129" height="133"/>
+                        <rect key="frame" x="8" y="8" width="46" height="133"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="133" id="pbz-nH-che"/>
                             <constraint firstAttribute="width" constant="129" id="wX3-Nn-R1G"/>
@@ -29,13 +29,13 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUg-Id-W1q">
-                        <rect key="frame" x="145" y="14.999999999999998" width="202" height="22.333333333333329"/>
+                        <rect key="frame" x="62" y="14.999999999999998" width="49" height="22.333333333333329"/>
                         <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwp-k9-Awo">
-                        <rect key="frame" x="145" y="38" width="202" height="103"/>
+                        <rect key="frame" x="62" y="38" width="49" height="103"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="103" id="3K5-hw-Wkw"/>
                         </constraints>
@@ -61,7 +61,7 @@
             <connections>
                 <outlet property="descriptionField" destination="Dwp-k9-Awo" id="cP6-h0-tJ1"/>
                 <outlet property="imageField" destination="f9Q-HX-TVA" id="neF-Gj-xX1"/>
-                <outlet property="movieName" destination="SUg-Id-W1q" id="SJY-lA-ywh"/>
+                <outlet property="movieName" destination="SUg-Id-W1q" id="nHQ-mo-jgs"/>
             </connections>
             <point key="canvasLocation" x="174.80916030534351" y="56.690140845070424"/>
         </tableViewCell>

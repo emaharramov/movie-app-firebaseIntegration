@@ -21,7 +21,7 @@ struct Response: Codable {
     }
 }
 
-struct Movie: Codable {
+struct Movie: Codable, TopImageBottomLabelCellProtocol {
     let id: Int?
     let title: String?
     let originalTitle: String?
@@ -32,6 +32,18 @@ struct Movie: Codable {
     let voteAverage: Double?
     let voteCount: Int?
     let popularity: Double?
+    
+    var imageName: String {
+        if let posterPath {
+            return posterPath
+        } else {
+            return "placeholder"
+        }
+    }
+    
+    var nameText: String {
+        title ?? ""
+    }
 
     enum CodingKeys: String, CodingKey {
         case id

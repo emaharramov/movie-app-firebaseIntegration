@@ -8,18 +8,17 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    
-    private let viewModel = HomeVM()
-    
     @IBOutlet var collectionView: UICollectionView!
+    private let viewModel = HomeVM()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupCollectionView()
         configureViewModel()
     }
     
-    func setupCollectionView() {
+    fileprivate func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
 
@@ -30,15 +29,19 @@ class HomeViewController: UIViewController {
         collectionView.register(headerNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TrendingReusableView")
     }
     
-    func configureViewModel() {
+    fileprivate func configureViewModel() {
+        showLoading()
+        
         viewModel.loadMovie()
         
-        viewModel.success = {
-            self.collectionView.reloadData()
+        viewModel.success = { [weak self] in
+            self?.hideLoading()
+            self?.collectionView.reloadData()
         }
         
-        viewModel.didUpdateMovie = {
-            self.collectionView.reloadData()
+        viewModel.error = { [weak self] error in
+            self?.showAlert(title: "Error", message: "\(error)", isError: true)
+            self?.hideLoading()
         }
     }
     

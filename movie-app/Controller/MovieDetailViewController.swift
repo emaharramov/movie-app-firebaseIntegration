@@ -11,46 +11,46 @@ import FirebaseFirestore
 
 class MovieDetailViewController: UIViewController {
     
-    @IBOutlet weak var similarcollectionView: UICollectionView!
     @IBOutlet weak var collectionView: UICollectionView!
     var movie: Movie?
     var favoriteDocId: String?
     private let viewModel = HomeVM()
-
     private let firestoreService = FirestoreService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
         setupCollectionView()
         checkIfMovieIsFavorite()
-        title = movie?.title
     }
     
-    func setupCollectionView() {
+    fileprivate func configureUI() {
+        showLoading()
+        viewModel.loadMovie()
+        title = movie?.title
+        
+        viewModel.success = {
+            self.hideLoading()
+            self.collectionView.reloadData()
+        }
+        
+        viewModel.error = { message in
+            self.showAlert(title: "Error", message: "Error Message: \(message)", isError: true)
+            self.hideLoading()
+        }
+    }
+    
+    fileprivate func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        similarcollectionView.delegate = self
-        similarcollectionView.dataSource = self
+        // Register header
+        let headerNib = UINib(nibName: "MovieDetailCollectionViewCell", bundle: nil)
+        collectionView.register(headerNib, forCellWithReuseIdentifier: "MovieDetailCollectionViewCell")
         
-        let detailCellNib = UINib(nibName: "MovieDetailCollectionViewCell", bundle: nil)
-        collectionView.register(detailCellNib, forCellWithReuseIdentifier: "MovieDetailCollectionViewCell")
-        
-        let similarCellNib = UINib(nibName: "ActSimCollectionViewCell", bundle: nil)
-        similarcollectionView.register(similarCellNib, forCellWithReuseIdentifier: "ActSimCollectionViewCell")
-        
-        viewModel.loadMovie()
-        
-        viewModel.success = {
-            self.collectionView.reloadData()
-            self.similarcollectionView.reloadData()
-        }
-        
-        viewModel.didUpdateMovie = {
-            self.collectionView.reloadData()
-            self.similarcollectionView.reloadData()
-        }
-  
+        // Register trending movie cell
+        let trendingCellNib = UINib(nibName: "TopImageBottomLabelCell", bundle: nil)
+        collectionView.register(trendingCellNib, forCellWithReuseIdentifier: "TopImageBottomLabelCell")
     }
 
     @IBAction func addFav(_ sender: Any) {
@@ -103,34 +103,52 @@ class MovieDetailViewController: UIViewController {
 
 extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == similarcollectionView {
-            return viewModel.trendingMovie.count
+        if section == 0 {
+            return movie != nil ? 1 : 0
         }
-        return movie != nil ? 1 : 0
+        return viewModel.trendingMovie.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == similarcollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ActSimCollectionViewCell", for: indexPath) as? ActSimCollectionViewCell else {
+        if indexPath.section == 0 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieDetailCollectionViewCell", for: indexPath) as? MovieDetailCollectionViewCell, let movie = movie else {
                 return UICollectionViewCell()
             }
-            let movie = viewModel.trendingMovie[indexPath.row]
-            cell.configSimilarFilms(with: movie) // Doğru yapılandırma metodu çağrılıyor
+            cell.configure(with: movie)
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TopImageBottomLabelCell", for: indexPath) as? TopImageBottomLabelCell else {
+                return UICollectionViewCell()
+            }
+            let trendingMovie = viewModel.trendingMovie[indexPath.row]
+            cell.configure(data: trendingMovie)
             return cell
         }
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieDetailCollectionViewCell", for: indexPath) as? MovieDetailCollectionViewCell, let movie = movie else {
-            return UICollectionViewCell()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if section == 0 {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
+        } else {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
-        cell.configure(with: movie)
-        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.section == 0 {
+            return CGSize(width: collectionView.bounds.width - 10, height: 200)
+        } else {
+            let width = (collectionView.bounds.width / 2) - 15
+            return CGSize(width: width, height: 180)
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == similarcollectionView {
-            return CGSize(width: collectionView.bounds.width, height: 180)
-        }
-        return CGSize(width: collectionView.bounds.width - 10, height: collectionView.bounds.height / 1.2)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return section == 0 ? CGSize(width: collectionView.bounds.width, height: 10) : .zero
     }
 }

@@ -8,8 +8,6 @@
 import UIKit
 
 class AllMovieViewController: UITableViewController {
-    
-    
     @IBOutlet weak var allMovieTable: UITableView!
     
     var popularMovies: [Movie] = []
@@ -17,16 +15,22 @@ class AllMovieViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
+        setupCollectionView()
+    }
+    
+    fileprivate func configureUI() {
         self.title = (popularMovies.count == 0) ? "All Trending Movies" : "All Popular Movies"
+    }
+    
+    fileprivate func setupCollectionView() {
         let nib = UINib(nibName: "AllMovieTableCell", bundle: nil)
         allMovieTable.register(nib, forCellReuseIdentifier: "AllMovieTableCell")
-
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (popularMovies.count == 0) ? trendingMovies.count : popularMovies.count
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllMovieTableCell", for: indexPath) as! AllMovieTableCell
@@ -51,6 +55,4 @@ class AllMovieViewController: UITableViewController {
             print("Failed to instantiate MovieDetailViewController with identifier 'MovieDetailViewController'")
         }
     }
-    
-    
 }

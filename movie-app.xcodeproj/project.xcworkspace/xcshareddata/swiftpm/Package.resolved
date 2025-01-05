@@ -1,5 +1,5 @@
 {
-  "originHash" : "9ea14cc5f555b94c545ce88c4a7db938a721d813540bcea6a41e167645454cad",
+  "originHash" : "0f5da88c37aaf7740d3b05c31e2187f7be488ccc0e68e10a5e9e3059add203e2",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -116,6 +116,15 @@
       "state" : {
         "revision" : "b7e1104502eca3a213b46303391ca4d3bc8ddec1",
         "version" : "2.30910.0"
+      }
+    },
+    {
+      "identity" : "progresshud",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/relatedcode/ProgressHUD",
+      "state" : {
+        "revision" : "9364904a42cb25f58d026451140c4080a868e72e",
+        "version" : "14.1.3"
       }
     },
     {

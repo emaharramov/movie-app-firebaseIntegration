@@ -33,7 +33,6 @@ class HomeNetworkManager {
                                       method: .get) { data, error in
             completion(data?.results, error)
         }
-        
     }
     
     func getActorMovies(actorId: Int, completion: @escaping ([Film]?, String?) -> Void) {
@@ -55,7 +54,6 @@ class HomeNetworkManager {
                                       method: .get) { data, error in
             completion(data?.results, error)
         }
-
     }
     
     func getPopularActors(completion: @escaping ([Actor]?, String?) -> Void) {
@@ -68,5 +66,4 @@ class HomeNetworkManager {
             completion(data?.results, error)
         }
     }
-    
 }

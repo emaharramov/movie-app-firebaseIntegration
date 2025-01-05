@@ -8,18 +8,22 @@
 import UIKit
 
 class ActorsFilmViewController: UIViewController {
-    
-    private let viewModel = HomeVM()
-    var actor: Actor?
     @IBOutlet weak var filmsTableView: UITableView!
+    
+    var actor: Actor?
+    private let viewModel = HomeVM()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureViewModel()
+        configureUI()
+    }
+    
+    fileprivate func configureUI() {
+        
         filmsTableView.delegate = self
         filmsTableView.dataSource = self
-        
-        configureViewModel()
         
         if let actor = actor {
             self.title = actor.name
@@ -27,19 +31,20 @@ class ActorsFilmViewController: UIViewController {
         }
     }
     
-    func configureViewModel() {
+    fileprivate func configureViewModel() {
+        showLoading()
         viewModel.loadMovie()
         
-        viewModel.success = {
-            self.filmsTableView.reloadData()
+        viewModel.success = { [weak self] in
+            self?.hideLoading()
+            self?.filmsTableView.reloadData()
         }
         
-        viewModel.didUpdateMovie = {
-            self.filmsTableView.reloadData()
+        viewModel.error = { [weak self] error in
+            self?.showAlert(title: "Error", message: "Error Message: \(error)", isError: true)
+            self?.hideLoading()
         }
     }
-    
-
 }
 
 extension ActorsFilmViewController: UITableViewDelegate, UITableViewDataSource {

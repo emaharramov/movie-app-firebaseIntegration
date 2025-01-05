@@ -13,7 +13,6 @@ class HomeVM {
     var popularMovie: [Movie] = []
     var popularPerson: [Actor] = []
     var popularPersonFilms: [Film] = [] 
-    var didUpdateMovie: (() -> Void)?
     var success: (() -> Void)?
     var error: ((String) -> Void)?
     
@@ -58,7 +57,5 @@ class HomeVM {
                 self.success?()
             }
         }
-        
-        
     }
 }
