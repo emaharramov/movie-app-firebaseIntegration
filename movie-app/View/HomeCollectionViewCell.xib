@@ -20,7 +20,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="130" height="160"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="160" id="4WL-WJ-dIR"/>
-                            <constraint firstAttribute="width" constant="130" id="KxY-ud-k0i"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

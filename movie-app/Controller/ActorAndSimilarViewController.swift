@@ -70,4 +70,3 @@ extension ActorAndSimilarViewController: UICollectionViewDelegate, UICollectionV
             }
         }
 }
-

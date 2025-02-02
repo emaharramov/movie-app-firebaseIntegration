@@ -28,7 +28,7 @@ class MovieDetailCollectionViewCell: UICollectionViewCell {
             let imageUrl = "https://image.tmdb.org/t/p/w500\(posterPath)"
             imageView.kf.setImage(with: URL(string: imageUrl))
         } else {
-            imageView.image = UIImage(named: "placeholder") // Add a default placeholder image
+            imageView.image = UIImage(named: "placeholder")
         }
     }
 }

@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
         collectionView.register(headerNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TrendingReusableView")
     }
     
-    fileprivate func configureViewModel() {
+    private func configureViewModel() {
         showLoading()
         
         viewModel.loadMovie()
@@ -145,5 +145,4 @@ extension HomeViewController: TrendingReusableViewDelegate {
               navigationController?.pushViewController(controller, animated: true)
           }
       }
-  
 }

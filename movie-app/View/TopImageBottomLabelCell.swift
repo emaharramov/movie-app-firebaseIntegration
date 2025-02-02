@@ -25,22 +25,5 @@ class TopImageBottomLabelCell: UICollectionViewCell {
         nameLabel.text = data.nameText
         imageView.setImage(from: data.imageName)
     }
-    
-//    func configure(with actor: Actor) {
-//        nameLabel.text = actor.name
-//        if let profilePath = actor.profilePath {
-//            imageView.setImage(from: profilePath)
-//        } else {
-//            imageView.image = UIImage(named: "placeholder")
-//        }
-//    }
-//    
-//    func configSimilarFilms(with movie: Movie) {
-//        nameLabel.text = movie.title
-//        if let posterPath = movie.posterPath {
-//            imageView.setImage(from: posterPath)
-//        } else {
-//            imageView.image = UIImage(named: "placeholder")
-//        }
-//    }
+
 }

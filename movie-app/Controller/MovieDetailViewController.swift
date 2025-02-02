@@ -44,11 +44,9 @@ class MovieDetailViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        // Register header
         let headerNib = UINib(nibName: "MovieDetailCollectionViewCell", bundle: nil)
         collectionView.register(headerNib, forCellWithReuseIdentifier: "MovieDetailCollectionViewCell")
         
-        // Register trending movie cell
         let trendingCellNib = UINib(nibName: "TopImageBottomLabelCell", bundle: nil)
         collectionView.register(trendingCellNib, forCellWithReuseIdentifier: "TopImageBottomLabelCell")
     }
@@ -128,6 +126,15 @@ extension MovieDetailViewController: UICollectionViewDelegate, UICollectionViewD
             let trendingMovie = viewModel.trendingMovie[indexPath.row]
             cell.configure(data: trendingMovie)
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedMovie = viewModel.trendingMovie[indexPath.row]
+        
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController {
+            controller.movie = selectedMovie
+            navigationController?.pushViewController(controller, animated: true)
         }
     }
 
