@@ -59,4 +59,5 @@ extension ActorsFilmViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = film.title
         return cell
     }
+    
 }

@@ -24,7 +24,7 @@ class MovieDetailViewController: UIViewController {
         checkIfMovieIsFavorite()
     }
     
-    fileprivate func configureUI() {
+    private func configureUI() {
         showLoading()
         viewModel.loadMovie()
         title = movie?.title
@@ -40,7 +40,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
-    fileprivate func setupCollectionView() {
+    private func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         

@@ -9,8 +9,8 @@ import UIKit
 import Kingfisher
 
 extension UIImageView {
-    private static let imageBaseURL = "https://image.tmdb.org/t/p/w500"
-    
+    private static let imageBaseURL = "https://image.tmdb.org/t/p/original"
+        
     func setImage(from path: String?, placeholder: String = "default_poster") {
         guard let path = path, !path.isEmpty else {
             self.image = UIImage(named: placeholder)
