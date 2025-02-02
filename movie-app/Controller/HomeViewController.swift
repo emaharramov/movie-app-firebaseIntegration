@@ -79,6 +79,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             navigationController?.pushViewController(controller, animated: true)
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "TrendingReusableView", for: indexPath) as! TrendingReusableView
@@ -99,6 +100,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 //MARK: TrendingReusable config
 extension HomeViewController: TrendingReusableViewDelegate {
+    
     
     func popularSeeAll(in view: TrendingReusableView) {
          let popularMovies = viewModel.popularMovie
@@ -136,5 +138,12 @@ extension HomeViewController: TrendingReusableViewDelegate {
             }
         }
     }
+    
+    func didSelectMovie(_ movie: Movie) {
+          if let controller = storyboard?.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController {
+              controller.movie = movie
+              navigationController?.pushViewController(controller, animated: true)
+          }
+      }
   
 }

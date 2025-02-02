@@ -18,6 +18,8 @@ protocol TrendingReusableViewDelegate: AnyObject {
     func trendingSeelAll(in view: TrendingReusableView)
     
     func seeAllAction(type: TrendingViewActionType)
+    
+    func didSelectMovie(_ movie: Movie)
 }
 
 class TrendingReusableView: UICollectionReusableView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -53,6 +55,12 @@ class TrendingReusableView: UICollectionReusableView, UICollectionViewDelegate, 
         cell.configure(with: movie)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedMovie = movies[indexPath.row]
+        delegate?.didSelectMovie(selectedMovie)
+    }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 170, height: collectionView.frame.height)
