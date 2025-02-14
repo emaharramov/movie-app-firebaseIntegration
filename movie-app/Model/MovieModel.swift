@@ -32,6 +32,7 @@ struct Movie: Codable, TopImageBottomLabelCellProtocol {
     let voteAverage: Double?
     let voteCount: Int?
     let popularity: Double?
+    let status: String?
     
     var imageName: String {
         if let posterPath {
@@ -56,6 +57,7 @@ struct Movie: Codable, TopImageBottomLabelCellProtocol {
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
         case popularity
+        case status
     }
 }
 
